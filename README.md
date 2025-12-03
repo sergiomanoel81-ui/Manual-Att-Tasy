@@ -41,7 +41,7 @@ manual-tasy/
 ### Online (Recomendado)
 
 Acesse diretamente pelo navegador:
-👉 [https://seu-usuario.github.io/manual-tasy/](https://seu-usuario.github.io/manual-tasy/)
+👉 [https://seu-usuario.github.io/manual-tasy/](https://seu-usuario.github.io/manual-Att-tasy/)
 
 ### Local
 
