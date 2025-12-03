@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Atualização Tasy - Guia Interativo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: white;
+            color: #667eea;
+            padding: 15px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h4 {
+            color: #667eea;
+            margin: 15px 0 10px 0;
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .danger-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .code-block .comment {
+            color: #75715e;
+        }
+
+        .code-block .keyword {
+            color: #66d9ef;
+        }
+
+        .code-block .string {
+            color: #e6db74;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .checklist li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .checklist input[type="checkbox"] {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline-item::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .progress-indicator {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .progress-step {
+            flex: 1;
+            height: 8px;
+            background: #dee2e6;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-step.completed {
+            background: #28a745;
+        }
+
+        .progress-step.active {
+            background: #667eea;
+        }
+
+        .notes-section {
+            background: #fff8e1;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .notes-section h3 {
+            color: #f57c00;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .button.success {
+            background: #28a745;
+        }
+
+        .button.success:hover {
+            background: #218838;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .card h4 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+            color: white;
+        }
+
+        .card p {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .card small {
+            opacity: 0.9;
+        }
+
+        footer {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        footer p {
+            color: #666;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .nav-tab {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+
+            .content-section {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .copy-button {
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            float: right;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        .copy-button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .regras-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .regras-box {
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .regras-box.sempre {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+        }
+
+        .regras-box.nunca {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+        }
+
+        .regras-box h3 {
+            margin-top: 0;
+        }
+
+        .regras-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .regras-box li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .regras-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .print-button {
+            background: #6c757d;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+        }
+
+        .print-button:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .nav-tabs, .button, .copy-button, .print-button {
+                display: none;
+            }
+            .content-section {
+                display: block !important;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Manual de Atualização Tasy</h1>
+            <p>Guia Prático e Interativo - Versão 2.0</p>
+            <div class="badges">
+                <span class="badge">✅ Testado</span>
+                <span class="badge">📚 Completo</span>
+                <span class="badge">🎯 Prático</span>
+                <span class="badge">⚡ Rápido</span>
+            </div>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('preparacao')">📋 Preparação</button>
+            <button class="nav-tab" onclick="showSection('scripts')">💾 Scripts</button>
+            <button class="nav-tab" onclick="showSection('atualizacao')">⚙️ Atualização</button>
+            <button class="nav-tab" onclick="showSection('pos')">✅ Pós-Atualização</button>
+            <button class="nav-tab" onclick="showSection('checklist')">📝 Checklist</button>
+            <button class="nav-tab" onclick="showSection('regras')">💡 Regras</button>
+            <button class="nav-tab" onclick="showSection('registro')">📊 Registro</button>
+        </div>
+
+        <!-- SEÇÃO PREPARAÇÃO -->
+        <div id="preparacao" class="content-section active">
+            <h2><span class="icon">🎯</span> Preparação Inicial</h2>
+
+            <div class="danger-box">
+                <h3>⚠️ CRÍTICO - Backup Obrigatório</h3>
+                <p><strong>Nunca inicie a atualização sem um backup completo e validado do banco de dados!</strong></p>
+                <p>O backup é sua única garantia de recuperação em caso de problemas.</p>
+            </div>
+
+            <h3><span class="icon">📋</span> Requisitos</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>💾</h4>
+                    <p>Backup</p>
+                    <small>Completo e validado</small>
+                </div>
+                <div class="card">
+                    <h4>🌐</h4>
+                    <p>Browser</p>
+                    <small>Chrome, Firefox ou Edge</small>
+                </div>
+                <div class="card">
+                    <h4>🔧</h4>
+                    <p>SQL Tool</p>
+                    <small>SQL Developer ou Toad</small>
+                </div>
+                <div class="card">
+                    <h4>👤</h4>
+                    <p>Admin</p>
+                    <small>Usuário administrador</small>
+                </div>
+            </div>
+
+            <h3><span class="icon">⚙️</span> Configurar CONFIG BUILD</h3>
+            <div class="info-box">
+                <p><strong>Caminho:</strong> App Manager → CONFIG → DATABASE → CONFIG BUILD</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-step="1">
+                    <strong>Acessar App Manager</strong>
+                    <p>Navegue até CONFIG → DATABASE → CONFIG BUILD</p>
+                </div>
+                <div class="timeline-item" data-step="2">
+                    <strong>Escolher Plataforma</strong>
+                    <p>Selecione: HTML5, JAVA ou DELPHI (conforme sua versão atual)</p>
+                </div>
+                <div class="timeline-item" data-step="3">
+                    <strong>Definir Build</strong>
+                    <div class="warning-box" style="margin-top: 10px;">
+                        <p>❌ NUNCA use Build = 0</p>
+                        <p>❌ NUNCA use o último disponível</p>
+                        <p>✅ Use build intermediário/estável (ex: 40-80)</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-step="4">
+                    <strong>Salvar Configuração</strong>
+                    <p>Clique em SAVE para aplicar as configurações</p>
+                </div>
+            </div>
+
+            <h3><span class="icon">🔍</span> Validações Essenciais</h3>
+            
+            <div class="info-box">
+                <h4>📌 Verificar Versão Atual</h4>
+                <p><strong>✅ Forma CORRETA:</strong> Faça login no Tasy e veja a versão na <strong>tela inicial do sistema</strong></p>
+                <p><strong>❌ Forma INCORRETA:</strong> Não confie em queries SQL para obter a versão</p>
+                <p><strong>Exemplo de versão:</strong> 5.01.1835.267</p>
+                <label for="versaoAtual"><strong>Anotar versão atual:</strong></label>
+                <input type="text" class="input-field" id="versaoAtual" placeholder="Ex: 5.01.1835.267">
+            </div>
+
+            <h4>Consultas SQL Essenciais</h4>
+
+            <p><strong>1. Valor de JOB_QUEUE_PROCESSES (CRÍTICO!)</strong></p>
+            <div class="code-block">
+<span class="comment">-- Este valor DEVE ser anotado para restauração posterior</span>
+<span class="keyword">SELECT</span> value <span class="keyword">FROM</span> v$parameter 
+<span class="keyword">WHERE</span> name = <span class="string">'job_queue_processes'</span>;
+            </div>
+            <input type="text" class="input-field" id="jobQueueValue" placeholder="Anotar valor aqui (ex: 20)">
+
+            <p><strong>2. Total de jobs ativas</strong></p>
+            <div class="code-block">
+<span class="comment">-- Quantidade de jobs que serão desativadas</span>
+<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> user_jobs 
+<span class="keyword">WHERE</span> broken = <span class="string">'N'</span>;
+            </div>
+            <input type="text" class="input-field" id="totalJobs" placeholder="Anotar total de jobs (ex: 39)">
+        </div>
+
+        <!-- SEÇÃO SCRIPTS -->
+        <div id="scripts" class="content-section">
+            <h2><span class="icon">💾</span> Scripts para GitHub</h2>
+
+            <div class="info-box">
+                <h4>📁 Estrutura de Arquivos Recomendada</h4>
+                <p>Organize seus scripts no GitHub:</p>
+                <ul>
+                    <li>📄 <code>desativar_jobs.sql</code> - Script pré-atualização</li>
+                    <li>📄 <code>reativar_jobs.sql</code> - Script pós-atualização</li>
+                    <li>📄 <code>README.md</code> - Documentação e instruções</li>
+                </ul>
+            </div>
+
+            <h3><span class="icon">📄</span> Script 1: Desativar Jobs</h3>
+            <p><strong>Arquivo:</strong> <code>desativar_jobs.sql</code></p>
+            <p><strong>Quando usar:</strong> ANTES de iniciar a atualização</p>
+            
+            <button class="copy-button" onclick="copyScript('script1')">📋 Copiar Script</button>
+            <div style="clear: both;"></div>
+            
+            <div class="code-block" id="script1">
+<span class="comment">-- ═══════════════════════════════════════════════════════════
+-- 🔴 DESATIVAR JOBS ANTES DA ATUALIZAÇÃO TASY
+-- ═══════════════════════════════════════════════════════════</span>
+
+<span class="comment">-- PASSO 1: Capturar Valor Atual</span>
+<span class="keyword">SELECT</span> value <span class="keyword">AS</span> JOB_QUEUE_PROCESSES_ATUAL 
+<span class="keyword">FROM</span> v$parameter 
+<span class="keyword">WHERE</span> name = <span class="string">'job_queue_processes'</span>;
+<span class="comment">-- ⚠️ ANOTAR: _______</span>
+
+<span class="comment">-- PASSO 2: Desabilitar</span>
+<span class="keyword">ALTER SYSTEM SET</span> JOB_QUEUE_PROCESSES = 0 <span class="keyword">SCOPE</span>=<span class="keyword">BOTH</span>;
+
+<span class="comment">-- PASSO 3: ⏰ AGUARDAR 30 SEGUNDOS!</span>
+
+<span class="comment">-- PASSO 4: Quebrar Jobs</span>
+<span class="keyword">BEGIN</span>
+  <span class="keyword">FOR</span> job_rec <span class="keyword">IN</span> (<span class="keyword">SELECT</span> job <span class="keyword">FROM</span> user_jobs <span class="keyword">WHERE</span> broken = <span class="string">'N'</span>) <span class="keyword">LOOP</span>
+    <span class="keyword">BEGIN</span>
+      DBMS_JOB.BROKEN(job_rec.job, <span class="keyword">TRUE</span>);
+    <span class="keyword">EXCEPTION</span> <span class="keyword">WHEN OTHERS THEN NULL</span>;
+    <span class="keyword">END</span>;
+  <span class="keyword">END LOOP</span>;
+  <span class="keyword">COMMIT</span>;
+<span class="keyword">END</span>;
+/
+
+<span class="comment">-- PASSO 5: Segunda Tentativa</span>
+<span class="keyword">BEGIN</span>
+  <span class="keyword">FOR</span> job_rec <span class="keyword">IN</span> (<span class="keyword">SELECT</span> job <span class="keyword">FROM</span> user_jobs <span class="keyword">WHERE</span> broken = <span class="string">'N'</span>) <span class="keyword">LOOP</span>
+    <span class="keyword">BEGIN</span>
+      DBMS_JOB.BROKEN(job_rec.job, <span class="keyword">TRUE</span>);
+    <span class="keyword">EXCEPTION</span> <span class="keyword">WHEN OTHERS THEN NULL</span>;
+    <span class="keyword">END</span>;
+  <span class="keyword">END LOOP</span>;
+  <span class="keyword">COMMIT</span>;
+<span class="keyword">END</span>;
+/
+
+<span class="comment">-- PASSO 6: Validar</span>
+<span class="keyword">SELECT</span> <span class="string">'JOB_QUEUE_PROCESSES'</span> <span class="keyword">AS</span> ITEM, value <span class="keyword">AS</span> VALOR
+<span class="keyword">FROM</span> v$parameter <span class="keyword">WHERE</span> name = <span class="string">'job_queue_processes'</span>
+<span class="keyword">UNION ALL</span>
+<span class="keyword">SELECT</span> <span class="string">'JOBS_ATIVAS'</span>, <span class="keyword">TO_CHAR</span>(<span class="keyword">COUNT</span>(*))
+<span class="keyword">FROM</span> user_jobs <span class="keyword">WHERE</span> broken = <span class="string">'N'</span>;
+            </div>
+
+            <h3><span class="icon">📄</span> Script 2: Reativar Jobs</h3>
+            <p><strong>Arquivo:</strong> <code>reativar_jobs.sql</code></p>
+            
+            <div class="warning-box">
+                <h4>⚠️ IMPORTANTE</h4>
+                <p>Antes de executar, você DEVE editar o script e substituir <code>[VALOR_ANOTADO]</code> pelo valor real que anotou!</p>
+            </div>
+
+            <button class="copy-button" onclick="copyScript('script2')">📋 Copiar Script</button>
+            <div style="clear: both;"></div>
+            
+            <div class="code-block" id="script2">
+<span class="comment">-- ═══════════════════════════════════════════════════════════
+-- 🟢 REATIVAR JOBS APÓS ATUALIZAÇÃO
+-- ⚠️ EDITAR: Substituir [VALOR_ANOTADO]!
+-- ═══════════════════════════════════════════════════════════</span>
+
+<span class="comment">-- PASSO 1: Verificar objetos inválidos</span>
+<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> OBJETOS_INVALIDOS
+<span class="keyword">FROM</span> user_objects <span class="keyword">WHERE</span> status = <span class="string">'INVALID'</span>;
+
+<span class="comment">-- PASSO 2: Reabilitar (SUBSTITUIR!)</span>
+<span class="keyword">ALTER SYSTEM SET</span> JOB_QUEUE_PROCESSES = [VALOR_ANOTADO] <span class="keyword">SCOPE</span>=<span class="keyword">BOTH</span>;
+
+<span class="comment">-- PASSO 3: Desquebrar jobs</span>
+<span class="keyword">BEGIN</span>
+  <span class="keyword">FOR</span> job_rec <span class="keyword">IN</span> (<span class="keyword">SELECT</span> job <span class="keyword">FROM</span> user_jobs <span class="keyword">WHERE</span> broken = <span class="string">'Y'</span>) <span class="keyword">LOOP</span>
+    DBMS_JOB.BROKEN(job_rec.job, <span class="keyword">FALSE</span>);
+  <span class="keyword">END LOOP</span>;
+  <span class="keyword">COMMIT</span>;
+<span class="keyword">END</span>;
+/
+
+<span class="comment">-- PASSO 4: Validar</span>
+<span class="keyword">SELECT</span> <span class="string">'JOB_QUEUE_PROCESSES'</span>, value
+<span class="keyword">FROM</span> v$parameter <span class="keyword">WHERE</span> name = <span class="string">'job_queue_processes'</span>
+<span class="keyword">UNION ALL</span>
+<span class="keyword">SELECT</span> <span class="string">'JOBS_ATIVAS'</span>, <span class="keyword">TO_CHAR</span>(<span class="keyword">COUNT</span>(*))
+<span class="keyword">FROM</span> user_jobs <span class="keyword">WHERE</span> broken = <span class="string">'N'</span>;
+            </div>
+        </div>
+
+        <!-- SEÇÃO ATUALIZAÇÃO -->
+        <div id="atualizacao" class="content-section">
+            <h2><span class="icon">⚙️</span> Processo de Atualização</h2>
+
+            <h3><span class="icon">📥</span> ETAPA 1: Download</h3>
+            <div class="info-box">
+                <p><strong>Tempo estimado:</strong> 5 minutos</p>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Update to</strong></td>
+                            <td>Versão de destino (ex: 5.03.1842)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Pack</strong></td>
+                            <td>❌ Não use o último<br>✅ Use entre 40-80</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3><span class="icon">🔧</span> ETAPA 2: Prepare Update</h3>
+            <div class="info-box">
+                <p><strong>Tempo estimado:</strong> 10 minutos</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Seleção de Ambiente</h4>
+                <ul>
+                    <li><strong>Homologação:</strong> ❌ NÃO marque checkbox "production"</li>
+                    <li><strong>Produção:</strong> ✅ MARQUE checkbox "production"</li>
+                </ul>
+            </div>
+
+            <h3><span class="icon">🎯</span> ETAPA 3: Update Database</h3>
+            <div class="danger-box">
+                <h4>⚠️ CRÍTICO</h4>
+                <p>❌ NÃO feche o navegador durante esta etapa</p>
+                <p>⏱️ Tempo: 30 min - 2 horas</p>
+            </div>
+        </div>
+
+        <!-- SEÇÃO PÓS-ATUALIZAÇÃO -->
+        <div id="pos" class="content-section">
+            <h2><span class="icon">✅</span> Pós-Atualização</h2>
+
+            <h3><span class="icon">🔍</span> Validações</h3>
+
+            <div class="info-box">
+                <h4>📌 Verificar Nova Versão</h4>
+                <p>Faça login no Tasy e veja a versão na tela inicial</p>
+                <input type="text" class="input-field" id="novaVersao" placeholder="Nova versão:">
+            </div>
+
+            <div class="code-block">
+<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> user_objects 
+<span class="keyword">WHERE</span> status = <span class="string">'INVALID'</span>;
+            </div>
+
+            <div class="card-grid">
+                <div class="card" style="background: #28a745;">
+                    <h4>✅ Aceitável</h4>
+                    <p>0-10</p>
+                    <small>objetos inválidos</small>
+                </div>
+                <div class="card" style="background: #ffc107;">
+                    <h4>⚠️ Atenção</h4>
+                    <p>10-50</p>
+                    <small>objetos inválidos</small>
+                </div>
+                <div class="card" style="background: #dc3545;">
+                    <h4>❌ Crítico</h4>
+                    <p>&gt;50</p>
+                    <small>objetos inválidos</small>
+                </div>
+            </div>
+
+            <h3><span class="icon">🔄</span> Reativar Sistema</h3>
+            <div class="timeline">
+                <div class="timeline-item" data-step="1">
+                    <strong>Editar Script</strong>
+                    <p>Substituir [VALOR_ANOTADO] no script</p>
+                </div>
+                <div class="timeline-item" data-step="2">
+                    <strong>Executar Script</strong>
+                    <p>Executar reativar_jobs.sql</p>
+                </div>
+                <div class="timeline-item" data-step="3">
+                    <strong>Atualizar Aplicações</strong>
+                    <p>EDIT → atualizar versões → SAVE</p>
+                </div>
+                <div class="timeline-item" data-step="4">
+                    <strong>Iniciar Aplicações</strong>
+                    <p>START ALL e aguardar ícones verdes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO CHECKLIST -->
+        <div id="checklist" class="content-section">
+            <h2><span class="icon">📝</span> Checklist Completo</h2>
+
+            <h3>Pré-Atualização</h3>
+            <ul class="checklist">
+                <li><input type="checkbox" id="check1"> <label for="check1">Backup completo validado</label></li>
+                <li><input type="checkbox" id="check2"> <label for="check2">Scripts salvos</label></li>
+                <li><input type="checkbox" id="check3"> <label for="check3">CONFIG BUILD configurado</label></li>
+                <li><input type="checkbox" id="check4"> <label for="check4">Versão atual anotada</label></li>
+                <li><input type="checkbox" id="check5"> <label for="check5">JOB_QUEUE_PROCESSES anotado</label></li>
+                <li><input type="checkbox" id="check6"> <label for="check6">Script desativar executado</label></li>
+                <li><input type="checkbox" id="check7"> <label for="check7">Aplicações paradas</label></li>
+            </ul>
+
+            <h3>Durante Atualização</h3>
+            <ul class="checklist">
+                <li><input type="checkbox" id="check8"> <label for="check8">DOWNLOAD concluído</label></li>
+                <li><input type="checkbox" id="check9"> <label for="check9">PREPARE UPDATE concluído</label></li>
+                <li><input type="checkbox" id="check10"> <label for="check10">UPDATE DATABASE concluído</label></li>
+            </ul>
+
+            <h3>Pós-Atualização</h3>
+            <ul class="checklist">
+                <li><input type="checkbox" id="check11"> <label for="check11">Nova versão verificada</label></li>
+                <li><input type="checkbox" id="check12"> <label for="check12">Objetos inválidos &lt; 10</label></li>
+                <li><input type="checkbox" id="check13"> <label for="check13">Script reativar executado</label></li>
+                <li><input type="checkbox" id="check14"> <label for="check14">Aplicações atualizadas</label></li>
+                <li><input type="checkbox" id="check15"> <label for="check15">Sistema funcionando</label></li>
+            </ul>
+
+            <div class="success-box">
+                <p><strong>Progresso:</strong> <span id="progress">0</span>% (<span id="completed">0</span>/15)</p>
+            </div>
+
+            <button class="button" onclick="resetChecklist()">🔄 Resetar</button>
+        </div>
+
+        <!-- SEÇÃO REGRAS -->
+        <div id="regras" class="content-section">
+            <h2><span class="icon">💡</span> Regras de Ouro</h2>
+
+            <div class="regras-grid">
+                <div class="regras-box sempre">
+                    <h3>✅ SEMPRE</h3>
+                    <ul>
+                        <li>✅ Backup antes de tudo</li>
+                        <li>✅ Testar em homologação</li>
+                        <li>✅ Anotar JOB_QUEUE_PROCESSES</li>
+                        <li>✅ Usar builds intermediários</li>
+                        <li>✅ Aguardar 30s após desabilitar</li>
+                    </ul>
+                </div>
+
+                <div class="regras-box nunca">
+                    <h3>❌ NUNCA</h3>
+                    <ul>
+                        <li>❌ Atualizar sem backup</li>
+                        <li>❌ Pular desativação de jobs</li>
+                        <li>❌ Fechar navegador no UPDATE</li>
+                        <li>❌ Usar build = 0</li>
+                        <li>❌ Usar último SP/build</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO REGISTRO -->
+        <div id="registro" class="content-section">
+            <h2><span class="icon">📊</span> Registro da Atualização</h2>
+
+            <div class="notes-section">
+                <h3>📝 Informações</h3>
+                
+                <p><strong>Ambiente:</strong></p>
+                <label><input type="radio" name="ambiente" value="homologacao"> Homologação</label>
+                <label><input type="radio" name="ambiente" value="producao"> Produção</label>
+
+                <p><strong>Data:</strong></p>
+                <input type="date" class="input-field" id="dataAtualizacao">
+
+                <p><strong>Responsável:</strong></p>
+                <input type="text" class="input-field" id="responsavel" placeholder="Seu nome">
+
+                <p><strong>Versão atual:</strong></p>
+                <input type="text" class="input-field" id="versaoAtualReg" placeholder="Ex: 5.01.1835.267">
+
+                <p><strong>Versão destino:</strong></p>
+                <input type="text" class="input-field" id="versaoDestino" placeholder="Ex: 5.03.1842">
+
+                <p><strong>Service Pack:</strong></p>
+                <input type="text" class="input-field" id="spEscolhido" placeholder="Ex: 80">
+
+                <p><strong>Hora início:</strong></p>
+                <input type="time" class="input-field" id="horaInicio">
+
+                <p><strong>Hora fim:</strong></p>
+                <input type="time" class="input-field" id="horaFim">
+
+                <p><strong>Observações:</strong></p>
+                <textarea class="input-field" id="observacoes" rows="5"></textarea>
+
+                <button class="button" onclick="salvarRegistro()">💾 Salvar</button>
+                <button class="button success" onclick="exportarRegistro()">📄 Exportar</button>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>⏱️</h4>
+                    <p id="tempoTotal">--</p>
+                    <small>Tempo Total</small>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <h3>📚 Sobre Este Manual</h3>
+            <p><strong>Criado por:</strong> Sérgio</p>
+            <p><strong>Versão:</strong> 2.0</p>
+            <p><strong>Data:</strong> Dezembro 2025</p>
+            <p style="color: #667eea; font-weight: bold;">✨ Documento vivo - Atualize conforme novas experiências!</p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function copyScript(scriptId) {
+            const text = document.getElementById(scriptId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const orig = btn.textContent;
+                btn.textContent = '✅ Copiado!';
+                setTimeout(() => btn.textContent = orig, 2000);
+            });
+        }
+
+        function updateProgress() {
+            const total = 15;
+            const checked = document.querySelectorAll('#checklist input:checked').length;
+            document.getElementById('progress').textContent = Math.round((checked/total)*100);
+            document.getElementById('completed').textContent = checked;
+            localStorage.setItem('checklistState', JSON.stringify(
+                Array.from(document.querySelectorAll('#checklist input')).map(c => c.checked)
+            ));
+        }
+
+        function resetChecklist() {
+            if (confirm('Resetar checklist?')) {
+                document.querySelectorAll('#checklist input').forEach(c => c.checked = false);
+                updateProgress();
+            }
+        }
+
+        function salvarRegistro() {
+            const reg = {
+                ambiente: document.querySelector('input[name="ambiente"]:checked')?.value,
+                data: document.getElementById('dataAtualizacao').value,
+                responsavel: document.getElementById('responsavel').value,
+                versaoAtual: document.getElementById('versaoAtualReg').value,
+                versaoDestino: document.getElementById('versaoDestino').value,
+                sp: document.getElementById('spEscolhido').value,
+                horaInicio: document.getElementById('horaInicio').value,
+                horaFim: document.getElementById('horaFim').value,
+                observacoes: document.getElementById('observacoes').value
+            };
+            localStorage.setItem('registroAtualizacao', JSON.stringify(reg));
+            alert('✅ Registro salvo!');
+            calcularTempo();
+        }
+
+        function calcularTempo() {
+            const inicio = document.getElementById('horaInicio').value;
+            const fim = document.getElementById('horaFim').value;
+            if (inicio && fim) {
+                const [h1,m1] = inicio.split(':').map(Number);
+                const [h2,m2] = fim.split(':').map(Number);
+                let diff = (h2*60+m2) - (h1*60+m1);
+                if (diff < 0) diff += 1440;
+                const h = Math.floor(diff/60);
+                const m = diff % 60;
+                document.getElementById('tempoTotal').textContent = `${h}h ${m}min`;
+            }
+        }
+
+        function exportarRegistro() {
+            const reg = JSON.parse(localStorage.getItem('registroAtualizacao') || '{}');
+            const texto = `
+REGISTRO DE ATUALIZAÇÃO TASY
+═══════════════════════════════
+Ambiente: ${reg.ambiente || ''}
+Data: ${reg.data || ''}
+Responsável: ${reg.responsavel || ''}
+Versão Atual: ${reg.versaoAtual || ''}
+Versão Destino: ${reg.versaoDestino || ''}
+Service Pack: ${reg.sp || ''}
+Hora Início: ${reg.horaInicio || ''}
+Hora Fim: ${reg.horaFim || ''}
+Tempo Total: ${document.getElementById('tempoTotal').textContent}
+
+Observações:
+${reg.observacoes || ''}
+═══════════════════════════════
+            `.trim();
+            const blob = new Blob([texto], {type: 'text/plain'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `registro_tasy_${reg.data||'sem_data'}.txt`;
+            a.click();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = JSON.parse(localStorage.getItem('checklistState') || '[]');
+            document.querySelectorAll('#checklist input').forEach((c,i) => {
+                c.checked = saved[i] || false;
+                c.addEventListener('change', updateProgress);
+            });
+            updateProgress();
+
+            const reg = JSON.parse(localStorage.getItem('registroAtualizacao') || '{}');
+            if (reg.data) document.getElementById('dataAtualizacao').value = reg.data;
+            if (reg.responsavel) document.getElementById('responsavel').value = reg.responsavel;
+            if (reg.versaoAtual) document.getElementById('versaoAtualReg').value = reg.versaoAtual;
+            if (reg.versaoDestino) document.getElementById('versaoDestino').value = reg.versaoDestino;
+            if (reg.sp) document.getElementById('spEscolhido').value = reg.sp;
+            if (reg.horaInicio) document.getElementById('horaInicio').value = reg.horaInicio;
+            if (reg.horaFim) document.getElementById('horaFim').value = reg.horaFim;
+            if (reg.observacoes) document.getElementById('observacoes').value = reg.observacoes;
+            if (reg.ambiente) {
+                const radio = document.querySelector(`input[name="ambiente"][value="${reg.ambiente}"]`);
+                if (radio) radio.checked = true;
+            }
+            
+            document.getElementById('horaInicio')?.addEventListener('change', calcularTempo);
+            document.getElementById('horaFim')?.addEventListener('change', calcularTempo);
+            calcularTempo();
+        });
+    </script>
+</body>
+</html>
